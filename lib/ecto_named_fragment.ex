@@ -27,6 +27,7 @@ defmodule EctoNamedFragment do
       Repo.all(query)
     end
   end
+  ```
   """
   alias EctoNamedFragment.ConvertToPositionedArgs
 
@@ -52,12 +53,10 @@ defmodule EctoNamedFragment do
       Thus, it's not possible to dynamically create the query-string at runtime.
       """
       defmacro named_fragment(query, args) when is_binary(query) and is_list(args) do
-        with {:ok, query, args} <- ConvertToPositionedArgs.call(query, args) do
-          quote do
-            fragment(unquote_splicing([query | args]))
-            # apply(unquote(__CALLER__.module), :fragment, [unquote(query) | unquote(args)])
-          end
-        else
+        case ConvertToPositionedArgs.call(query, args) do
+          {:ok, query, args} ->
+            quote do: fragment(unquote_splicing([query | args]))
+
           {:error, reason} ->
             raise "error converting named fragment: #{inspect(reason)}"
         end

@@ -1,4 +1,6 @@
 defmodule EctoNamedFragment.ConvertToPositionedArgs do
+  @moduledoc false
+
   alias EctoNamedFragment.FragmentQueryParser
 
   def call(query, args) when is_list(args) do
@@ -11,7 +13,7 @@ defmodule EctoNamedFragment.ConvertToPositionedArgs do
   end
 
   def call(query, args) when is_map(args) do
-    with {:ok, matched, "", _, _, _} = FragmentQueryParser.fragment_query(query),
+    with {:ok, matched, "", _, _, _} <- FragmentQueryParser.fragment_query(query),
          {:ok, query, params_reversed} <- reduce_matched_parts(matched, args) do
       {:ok, query, Enum.reverse(params_reversed)}
     else
@@ -30,6 +32,7 @@ defmodule EctoNamedFragment.ConvertToPositionedArgs do
           {:cont, {:ok, query <> part, params}}
 
         {:arg, [name]} ->
+          # credo:disable-for-next-line Credo.Check.Refactor.Nesting
           case Map.get(args, name) do
             nil ->
               {:halt, {:error, "missing argument `#{name}` in fragment"}}

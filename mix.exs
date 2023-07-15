@@ -25,7 +25,11 @@ defmodule EctoNamedFragment.MixProject do
   defp deps do
     [
       {:nimble_parsec, "~> 1.3"},
-      {:ecto, "~> 3.10", only: [:dev, :test]}
+
+      # Dev, Test
+      {:ecto, "~> 3.10", only: [:dev, :test]},
+      {:ex_doc, "~> 0.29.1", only: [:dev, :test]},
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
     ]
   end
 end

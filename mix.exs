@@ -8,7 +8,8 @@ defmodule EctoNamedFragment.MixProject do
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      description: description()
+      description: description(),
+      package: package()
     ]
   end
 
@@ -30,6 +31,25 @@ defmodule EctoNamedFragment.MixProject do
       {:ecto, "~> 3.10", only: [:dev, :test]},
       {:ex_doc, "~> 0.30.3", only: [:dev, :test]},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
+    ]
+  end
+
+  defp package() do
+    [
+      # These are the default files included in the package
+      files: ~w[
+        lib
+        .formatter.exs
+        mix.exs
+        README.md
+        LICENSE.md
+        ],
+      licenses: ["MIT"],
+      links: %{
+        "GitHub" => "https://github.com/tessi/ecto_named_fragment",
+        "Docs" => "https://hexdocs.pm/ecto_named_fragment"
+      },
+      source_url: "https://github.com/tessi/ecto_named_fragment"
     ]
   end
 end

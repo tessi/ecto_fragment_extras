@@ -23,7 +23,7 @@ To use the `named_fragment` macro, `use EctoNamedFragment` in your module:
 ```elixir
 defmodule TestQuery do
   import Ecto.Query
-  import EctoNamedFragment
+  use EctoNamedFragment
 
   def test_query do
     left = 1

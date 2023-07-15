@@ -28,7 +28,7 @@ defmodule EctoNamedFragment.MixProject do
 
       # Dev, Test
       {:ecto, "~> 3.10", only: [:dev, :test]},
-      {:ex_doc, "~> 0.29.1", only: [:dev, :test]},
+      {:ex_doc, "~> 0.30.3", only: [:dev, :test]},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
     ]
   end

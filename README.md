@@ -30,7 +30,7 @@ defmodule TestQuery do
     right = 2
 
     query = from u in "users",
-      select: named_fragment("coalesce(:left, :right)", left: left, right: right)
+            select: named_fragment("coalesce(:left, :right)", left: "example", right: "input")
 
     Repo.all(query)
   end

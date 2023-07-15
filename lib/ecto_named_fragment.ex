@@ -15,14 +15,11 @@ defmodule EctoNamedFragment do
   ```elixir
   defmodule TestQuery do
     import Ecto.Query
-    import EctoNamedFragment
+    use EctoNamedFragment
 
     def test_query do
-      left = 1
-      right = 2
-
       query = from u in "users",
-        select: named_fragment("coalesce(:left, :right)", left: left, right: right)
+              select: named_fragment("coalesce(:left, :right)", left: "example", right: "input")
 
       Repo.all(query)
     end
@@ -40,17 +37,14 @@ defmodule EctoNamedFragment do
       fragment with positioned params.
 
       ```elixir
-      frag("coalesce(:left, :right)", left: left, right: right)
+      named_fragment("coalesce(:left, :right)", left: "example", right: "input")
       ```
 
       into
 
       ```elixir
-      fragment("coalesce(?, ?)", left, right)
+      fragment("coalesce(?, ?)", "example", "input")
       ```
-
-      This conversion is done at compile-time (d'oh! it's a macro, right :)).
-      Thus, it's not possible to dynamically create the query-string at runtime.
       """
       defmacro named_fragment(query, args) when is_binary(query) and is_list(args) do
         case ConvertToPositionedArgs.call(query, args) do

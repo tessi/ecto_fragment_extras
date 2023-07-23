@@ -4,7 +4,7 @@ defmodule EctoNamedFragment.MixProject do
   def project do
     [
       app: :ecto_named_fragment,
-      version: "0.1.0",
+      version: "0.2.0",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -25,10 +25,8 @@ defmodule EctoNamedFragment.MixProject do
 
   defp deps do
     [
-      {:nimble_parsec, "~> 1.3"},
-
       # Dev, Test
-      {:ecto, "~> 3.10", only: [:dev, :test]},
+      {:ecto, ">= 3.0.0", only: [:dev, :test]},
       {:ex_doc, "~> 0.30.3", only: [:dev, :test]},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
     ]

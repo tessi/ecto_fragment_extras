@@ -1,5 +1,5 @@
 defmodule ConvertInlineParamsTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   doctest EctoFragmentExtras
 
   alias EctoFragmentExtras.ConvertInlineParams

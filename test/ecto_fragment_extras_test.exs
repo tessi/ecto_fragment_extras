@@ -1,5 +1,5 @@
 defmodule EctoFragmentExtrasTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   doctest EctoFragmentExtras
 
   import Ecto.Query

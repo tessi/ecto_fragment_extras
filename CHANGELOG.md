@@ -18,14 +18,15 @@ Types of changes
 
 put your changes here
 
-## [0.3.0] - 2023-07-??
+## [0.3.0] - 2023-08-05
 
-* renamed library from `ecto_named_fragment` to `ecto_fragment_extras` because it contains a little more than just the named_fragment() macro now
+* renamed library from `ecto_named_fragment` to `ecto_fragment_extras` because it contains a little more than just the named_fragment() macro now 👇
 * added inline fragments which allow inlining fragment params into the query string:
    
   ```elixir
   inline_fragment("coalesce(#{users.name}, #{^default_name})")
   ```
+* added `frag/1` and `frag/2` as a shorthand for inline and named fragments depending on the arity it is called with.
 
 ## [0.2.0] - 2023-07-24
 

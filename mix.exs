@@ -1,9 +1,9 @@
-defmodule EctoNamedFragment.MixProject do
+defmodule EctoFragmentExtras.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :ecto_named_fragment,
+      app: :ecto_fragment_extras,
       version: "0.2.0",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
@@ -20,7 +20,7 @@ defmodule EctoNamedFragment.MixProject do
   end
 
   defp description() do
-    "Ecto fragment() with named params instead of just ?'s"
+    "A collection of macros to enhance Ectos fragment()"
   end
 
   defp deps do
@@ -44,10 +44,10 @@ defmodule EctoNamedFragment.MixProject do
         ],
       licenses: ["MIT"],
       links: %{
-        "GitHub" => "https://github.com/tessi/ecto_named_fragment",
-        "Docs" => "https://hexdocs.pm/ecto_named_fragment"
+        "GitHub" => "https://github.com/tessi/ecto_fragment_extras",
+        "Docs" => "https://hexdocs.pm/ecto_fragment_extras"
       },
-      source_url: "https://github.com/tessi/ecto_named_fragment"
+      source_url: "https://github.com/tessi/ecto_fragment_extras"
     ]
   end
 end

@@ -1,4 +1,4 @@
-defmodule EctoNamedFragment.Exceptions do
+defmodule EctoFragmentExtras.Exceptions do
   defmodule CompileError do
     @moduledoc """
     Raised at compilation time when the named fragment cannot be compiled.
@@ -12,7 +12,7 @@ defmodule EctoNamedFragment.Exceptions do
     t =
       Enum.drop_while(t, fn
         {mod, _, _, _} ->
-          String.starts_with?(Atom.to_string(mod), ["Elixir.EctoNamedFragment."])
+          String.starts_with?(Atom.to_string(mod), ["Elixir.EctoFragmentExtras."])
 
         _ ->
           false

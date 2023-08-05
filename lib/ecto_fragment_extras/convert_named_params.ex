@@ -1,9 +1,9 @@
-defmodule EctoNamedFragment.ConvertToEctoFragment do
+defmodule EctoFragmentExtras.ConvertNamedParams do
   @moduledoc false
 
-  import EctoNamedFragment.Exceptions, only: [error!: 1]
+  import EctoFragmentExtras.Exceptions, only: [error!: 1]
 
-  def call({:<<>>, _, pieces}, params) do
+  def call({:<<>>, _meta, pieces}, params) do
     if not Keyword.keyword?(params) do
       error!(
         "named_fragment(...) expect a keyword list as the last argument, got: #{Macro.to_string(params)}"
@@ -11,12 +11,10 @@ defmodule EctoNamedFragment.ConvertToEctoFragment do
     end
 
     query =
-      pieces
-      |> Enum.map(fn
-        "" <> binary -> binary
+      Enum.map_join(pieces, fn
+        binary when is_binary(binary) -> binary
         _ -> "?"
       end)
-      |> Enum.join()
 
     frags =
       Enum.flat_map(pieces, fn

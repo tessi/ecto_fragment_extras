@@ -1,16 +1,23 @@
-# EctoNamedFragment
+# EctoFragmentExtras
 
-`EctoNamedFragment` is a library for using named-params in Ecto fragments.
+`EctoFragmentExtras` is a collection of extensions to enhance Ecto's fragment() macro.
+
+It adds the following fragment variants which are all macros compiling into regular ecto fragments:
+
+* `named_fragment("coalesce(#{:name}, #{:default})", name: user.name, default: ^default_name)`
+* `inline_fragment("coalesce(#{user.name}, #{^default_name})")`
 
 ## Installation
 
-Add `ecto_named_fragment` to your list of dependencies in `mix.exs`:
+Add `ecto_fragment_extras` to your list of dependencies in `mix.exs`:
 
     def deps do
-      [{:ecto_named_fragment, "~> 0.2.0"}]
+      [{:ecto_fragment_extras, "~> 0.3.0"}]
     end
 
 ## Usage
+
+### Fragments with named params
 
 Instead of using Ectos `fragment` with ?-based interpolation, `named_fragment` allows you to use named params in your fragments.
 
@@ -22,7 +29,7 @@ be converted to `fragment("coalesce(?, ?, ?)", 1, 2, 1)` at compile-time.
 ```elixir
 defmodule TestQuery do
   import Ecto.Query
-  import EctoNamedFragment
+  import EctoFragmentExtras
 
   def test_query do
     query = from u in "users",
@@ -32,6 +39,12 @@ defmodule TestQuery do
   end
 end
 ```
+
+## TODO (removed before release)
+
+* ~FRAG("FOO(?{table.a}, ?{^other})") alias ~FRAGMENT
+* remove old hex package, publish new one
+* docs, readme, changelog
 
 ## License
 

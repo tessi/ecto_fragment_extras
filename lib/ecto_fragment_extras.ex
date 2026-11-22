@@ -10,10 +10,10 @@ defmodule EctoFragmentExtras do
   alias EctoFragmentExtras.ConvertInlineParams
   alias EctoFragmentExtras.ConvertNamedParams
 
-  @doc """
+  @doc ~S"""
   A variant of Ecto fragment() which supports named params.
 
-  Nameds params are provided in a keyword list as the last argument.
+  Named params are provided in a keyword list as the last argument.
   The fragments query string can reference named params using the
   `#{:name}` syntax where `name` is a key in the keyword list.
 

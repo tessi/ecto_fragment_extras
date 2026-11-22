@@ -1,4 +1,6 @@
 defmodule EctoFragmentExtras.Exceptions do
+  @moduledoc "Errors and error helpers for fragment compilation."
+
   defmodule CompileError do
     @moduledoc """
     Raised at compilation time when the named fragment cannot be compiled.

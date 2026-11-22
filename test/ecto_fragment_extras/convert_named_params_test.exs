@@ -28,16 +28,18 @@ defmodule ConvertNamedParamsTest do
   end
 
   test "raises for unknown params" do
-    assert_raise KeyError,
-                 "key :b not found in: [a: 0]",
-                 fn ->
-                   ConvertNamedParams.call(
-                     quote do
-                       "foo(#{:a}, #{:b})"
-                     end,
-                     a: 0
-                   )
-                 end
+    error =
+      assert_raise KeyError, fn ->
+        ConvertNamedParams.call(
+          quote do
+            "foo(#{:a}, #{:b})"
+          end,
+          a: 0
+        )
+      end
+
+    assert error.key == :b
+    assert error.term == [a: 0]
   end
 
   test "raises on non-atom names" do
